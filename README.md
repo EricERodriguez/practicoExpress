@@ -49,4 +49,6 @@ npm i dotenv
 npm i morgan
 npm i joi
 npm i nodemon
+
+npm install mongoose
 </code></pre>

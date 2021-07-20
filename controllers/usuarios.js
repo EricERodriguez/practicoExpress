@@ -1,3 +1,40 @@
+const usuarios = require("../models/usuarios");
+const Usuario = require("../models/usuarios");
+
+
+
+const getAllUsuarios = async(req, res) => {
+
+    const page = Number(req.query.page);
+    const limit = parseInt(req.query.limit);
+    const skipIndex = (page - 1) * limit;
+
+
+    try {
+        Usuario.countDocuments();
+        const results = await Usuario.find().sort({ _id: 1 }).limit(limit).skip(skipIndex);
+        return res.status(200).json({
+            code: "Ok getAll",
+            message: null,
+            success: true,
+            data: {
+                count,
+                results
+            }
+        });
+    } catch (error) {
+        return res.status(500).json({
+            code: "ERR",
+            message: error.message,
+            success: false,
+            data: null
+        });
+    }
+}
+
+
+
+
 // const usuarios = [{
 //     _id: "asd",
 //     nombre: "adolfo",
@@ -8,20 +45,107 @@
 //     roles: ["ADMIN"]
 // }]
 
-const getUsuario = (req, res) => {
-    res.status(200).send('OK');
-}
 
-const postUsuario = (req, res) => {
-    res.status(200).send('OK');
-}
-const putUsuario = (req, res) => {
-    res.status(200).send('OK');
-}
-const deleteUsuario = (req, res) => {
-    res.status(200).send('OK');
-}
+const getUsuario = async(req, res) => {
+    try {
+        const usuario = await Usuario.findById(req.params._id);
+        if (!usuario) {
+            return res.status(404).json({
+                code: "NOT_FOUND",
+                message: null,
+                success: false,
+                data: null
+            });
+        };
+        return res.status(200).json({
+            code: "Ok get",
+            message: null,
+            success: true,
+            data: usuario
+        });
+    } catch (error) {
+        return res.status(500).json({
+            code: "ERR",
+            message: error.message,
+            success: false,
+            data: null
+        });
+    }
+};
 
+
+
+const postUsuario = async(req, res) => {
+    try {
+        const usuario = await Usuario.create(req.body);
+        console.log(usuario);
+        res.status(200).json({
+            code: "Ok",
+            message: null,
+            success: true,
+            data: usuario
+        });
+    } catch (error) {
+        console.log(error);
+
+        // Esta es nuestra respuesta desde el backend
+        return res.status(500).send({
+            code: "ERR",
+            message: error.message,
+            success: false,
+            data: null
+        });
+    }
+};
+
+
+
+const putUsuario = async(req, res) => {
+    try {
+        const usuario = await Usuario.findOneAndUpdate({ _id: req.params._id }, {...req.body });
+        if (!usuaruio) {
+            return res.status(404).json({
+                code: "NOT-FOUND",
+                message: error.message,
+                success: false,
+                data: null
+            });
+        };
+        return res.status(200).json({
+            code: "Ok get",
+            message: null,
+            success: true,
+            data: usuario
+        });
+    } catch (error) {
+        return res.status(500).json({
+            code: "ERR",
+            message: error.message,
+            success: false,
+            data: null
+        });
+    }
+};
+
+
+const deleteUsuario = async(req, res) => {
+    try {
+        await Usuario.deleteOne({ _id: req.params._id });
+        return res.status(200).json({
+            code: "Ok delete",
+            message: null,
+            success: true,
+            data: null
+        });
+    } catch (error) {
+        res.status(500).json({
+            code: "ERR",
+            message: error.message,
+            success: false,
+            data: null
+        });
+    };
+};
 
 
 // const getUsuarios = (req, res) => {
@@ -69,4 +193,4 @@ module.exports = {
     postUsuario,
     putUsuario,
     deleteUsuario
-}
+};

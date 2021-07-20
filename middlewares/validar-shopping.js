@@ -9,8 +9,11 @@ const validarIdParamShopping = async(req, res, next) => {
         await schema.validateAsync(req.params);
         return next();
     } catch (error) {
-        return res.status(404).send({
-            mensaje: "Datos de entrada invalidos"
+        return res.status(404).json({
+            code: "VALIDATION-ERR",
+            message: error.details[0].message,
+            success: false,
+            data: null
         })
     }
 };
@@ -28,28 +31,31 @@ const validarPostShopping = async(req, res, next) => {
         await schema.validateAsync(req.body);
         return next();
     } catch (error) {
-        return res.status(404).send({
-            mensaje: "Datos de entrada invalidos"
+        return res.status(404).json({
+            code: "VALIDATION-ERR",
+            message: error.details[0].message,
+            success: false,
+            data: null
         });
     }
 };
 
 
-const validargetShopping = async(req, res, next) => {
-    const schema = Joi.object({
-        _id: Joi.string().required()
-    });
+// const validargetShopping = async(req, res, next) => {
+//     const schema = Joi.object({
+//         _id: Joi.string().required()
+//     });
 
-    try {
-        await schema.validateAsync(req.params);
-        return next();
-    } catch (error) {
-        return res.status(404).send({
-            mensaje: "Datos de entrada invalidos"
-        })
-    }
+//     try {
+//         await schema.validateAsync(req.params);
+//         return next();
+//     } catch (error) {
+//         return res.status(404).send({
+//             mensaje: "Datos de entrada invalidos"
+//         })
+//     }
 
-};
+// };
 
 const validarPutShopping = async(req, res, next) => {
     const schema = Joi.object({
@@ -62,8 +68,11 @@ const validarPutShopping = async(req, res, next) => {
         await schema.validateAsync(req.body);
         return next();
     } catch (error) {
-        return res.status(404).send({
-            mensaje: "Datos de entrada invalidos"
+        return res.status(404).json({
+            code: "VALIDATION-ERR",
+            message: error.details[0].message,
+            success: false,
+            data: null
         });
     }
 };
@@ -75,6 +84,6 @@ const validarPutShopping = async(req, res, next) => {
 module.exports = {
     validarIdParamShopping,
     validarPostShopping,
-    validargetShopping,
+    // validargetShopping,
     validarPutShopping
 }

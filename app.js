@@ -1,7 +1,7 @@
 require(`dotenv`).config();
 const express = require("express");
 const morgan = require("morgan");
-const { number } = require("joi");
+// const { number } = require("joi");
 
 
 //guardar logs y verificar que este andando el programa
@@ -12,9 +12,14 @@ const path = require(`path`);
 const rutasUsuarios = require(`./routes/usuarios`);
 const rutasShopping = require(`./routes/shopping`);
 const rutasComercio = require(`./routes/comercio`);
+const dbConnection = require("./configs/mongodb");
 
 
 const app = express();
+
+//conectar a la base de datos
+
+dbConnection();
 
 app.use(express.text());
 app.use(express.json());
@@ -32,6 +37,9 @@ app.use(`/usuarios`, rutasUsuarios);
 app.use(`/shopping`, rutasShopping);
 app.use(`/comercio`, rutasComercio);
 
+app.use((req, res, next) => {
+    res.status(404).send({ mensaje: "ERROR, no existe la ruta a la que quiere acceder" })
+});
 
 
 const port = process.env.PORT;
