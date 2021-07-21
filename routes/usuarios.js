@@ -7,7 +7,7 @@ const {
     postUsuario,
     putUsuario,
     deleteUsuario,
-    // getAllUsuarios,
+    getAllUsuarios,
 } = require(`../controllers/usuarios`)
 
 
@@ -19,7 +19,7 @@ const {
 
 } = require(`../middlewares/validar-usuarios`)
 
-// router.get(`/`, getAllUsuarios)
+router.get(`/`, getAllUsuarios)
 
 router.get(`/:_id`, validarIdParamUsuario, getUsuario)
 

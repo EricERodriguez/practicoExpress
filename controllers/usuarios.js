@@ -1,17 +1,18 @@
-const usuarios = require("../models/usuarios");
 const Usuario = require("../models/usuarios");
 
 
 
 const getAllUsuarios = async(req, res) => {
 
+    //paginado
+
     const page = Number(req.query.page);
-    const limit = parseInt(req.query.limit);
+    const limit = Number(req.query.limit);
     const skipIndex = (page - 1) * limit;
 
 
     try {
-        Usuario.countDocuments();
+        const count = await Usuario.countDocuments();
         const results = await Usuario.find().sort({ _id: 1 }).limit(limit).skip(skipIndex);
         return res.status(200).json({
             code: "Ok getAll",
@@ -102,15 +103,7 @@ const postUsuario = async(req, res) => {
 
 const putUsuario = async(req, res) => {
     try {
-        const usuario = await Usuario.findOneAndUpdate({ _id: req.params._id }, {...req.body });
-        if (!usuaruio) {
-            return res.status(404).json({
-                code: "NOT-FOUND",
-                message: error.message,
-                success: false,
-                data: null
-            });
-        };
+        const usuario = await Usuario.findOneAndUpdate({ _id: req.params._id }, {...req.body }, { new: true });
         return res.status(200).json({
             code: "Ok get",
             message: null,
@@ -192,5 +185,6 @@ module.exports = {
     getUsuario,
     postUsuario,
     putUsuario,
-    deleteUsuario
+    deleteUsuario,
+    getAllUsuarios
 };

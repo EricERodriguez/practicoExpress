@@ -58,3 +58,12 @@ PUT /usuarios/60f5df2f96824f1b7085dcbd 404 92 - 12.418 ms
 PUT /usuarios/60f5df2f96824f1b7085dcbd 404 92 - 3.718 ms
 PUT /usuarios/60f5df2f96824f1b7085dcbd 404 92 - 1.529 ms
 PUT /usuarios/60f5df2f96824f1b7085dcbd 404 92 - 1.333 ms
+PUT /usuarios/60f5df2f96824f1b7085dcbd 404 92 - 13.639 ms
+PUT /usuarios/60f5df2f96824f1b7085dcbd 200 314 - 217.367 ms
+GET /usuarios 500 342 - 204.062 ms
+GET /usuarios 500 342 - 191.308 ms
+GET /usuarios 500 342 - 195.103 ms
+GET /usuarios?page=1&limit=5 500 342 - 187.772 ms
+GET /usuarios?page=1&limit=5 500 342 - 205.306 ms
+GET /usuarios?page=1&limit=5 500 342 - 208.718 ms
+GET /usuarios?page=1&limit=5 200 1384 - 527.795 ms
