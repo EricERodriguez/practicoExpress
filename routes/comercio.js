@@ -6,7 +6,8 @@ const {
     getComercio,
     postComercio,
     putComercio,
-    deleteComercio
+    deleteComercio,
+    getAllComercios,
 } = require(`../controllers/comercio`)
 
 
@@ -18,6 +19,7 @@ const {
 } = require(`../middlewares/validar-comercio`)
 
 
+router.get(`/`, getAllComercios)
 
 router.get(`/:_id`, validarIdParamComercio, getComercio)
 

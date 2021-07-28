@@ -12,6 +12,10 @@ const path = require(`path`);
 const rutasUsuarios = require(`./routes/usuarios`);
 const rutasShopping = require(`./routes/shopping`);
 const rutasComercio = require(`./routes/comercio`);
+const authRoutes = require(`./routes/authroutes`);
+
+
+
 const dbConnection = require("./configs/mongodb");
 
 
@@ -36,6 +40,7 @@ app.use(morgan('tiny', { stream: accessLogStream }));
 app.use(`/usuarios`, rutasUsuarios);
 app.use(`/shopping`, rutasShopping);
 app.use(`/comercio`, rutasComercio);
+app.use(`/auth`, authRoutes);
 
 app.use((req, res, next) => {
     res.status(404).send({ mensaje: "ERROR, no existe la ruta a la que quiere acceder" })

@@ -21,7 +21,7 @@ const validarIdParamComercio = async(req, res, next) => {
 //requerimos todos porq es para crear un comercio
 const validarPostComercio = async(req, res, next) => {
     const schema = Joi.object({
-        _id: Joi.string().required(),
+        // _id: Joi.string().required(),
         nombre: Joi.string().required(),
         manager: Joi.string().required(),
         shopping: Joi.string().required()

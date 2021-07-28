@@ -51,4 +51,9 @@ npm i joi
 npm i nodemon
 
 npm install mongoose
+
+npm i jsonwebtoken
+https://jwt.io/
+
+
 </code></pre>

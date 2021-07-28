@@ -6,7 +6,8 @@ const {
     getShopping,
     postShopping,
     putShopping,
-    deleteShopping
+    deleteShopping,
+    getAllShopping,
 } = require(`../controllers/shopping`)
 
 
@@ -18,6 +19,7 @@ const {
 } = require(`../middlewares/validar-shopping`)
 
 
+router.get(`/`, getAllShopping)
 
 router.get(`/:_id`, validarIdParamShopping, getShopping)
 
