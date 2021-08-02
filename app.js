@@ -14,6 +14,9 @@ const rutasShopping = require(`./routes/shopping`);
 const rutasComercio = require(`./routes/comercio`);
 const authRoutes = require(`./routes/authroutes`);
 
+//middleware token
+const { validateToken } = require("./middlewares/validar-auth");
+
 
 
 const dbConnection = require("./configs/mongodb");
@@ -27,6 +30,9 @@ dbConnection();
 
 app.use(express.text());
 app.use(express.json());
+
+//uso el token del middle
+app.use(validateToken);
 
 //Utilizando morgan y manipulando archivos
 const accessLogStream = fs.createWriteStream(
