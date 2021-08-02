@@ -106,3 +106,12 @@ GET /usuarios/1 500 146 - 2.931 ms
 GET /usuarios/1 500 146 - 1.412 ms
 GET /usuarios/1 500 146 - 1.633 ms
 GET /usuarios/60f5df2f96824f1b7085dcbd 200 317 - 204.494 ms
+POST /auth/login 200 188 - 4.109 ms
+POST /auth/login 200 188 - 4.116 ms
+GET /usuarios/60f5df2f96824f1b7085dcbd 200 47 - 212.703 ms
+GET /usuarios/60f5df2f96824f1b7085dcbd 200 47 - 204.447 ms
+GET /usuarios/60f5df2f96824f1b7085dcbd 500 78 - 1944.253 ms
+GET /usuarios/60f5df2f96824f1b7085dcbd 500 78 - 212.639 ms
+GET /usuarios/60f5df2f96824f1b7085dcbd 500 78 - 195.416 ms
+GET /usuarios/60f5df2f96824f1b7085dcbd 200 47 - 212.797 ms
+GET /usuarios?page=1&limit=5 200 106 - 397.636 ms
